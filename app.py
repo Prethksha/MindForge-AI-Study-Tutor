@@ -7,7 +7,7 @@ if "final_notes" not in st.session_state:
 
 # PAGE CONFIG
 st.set_page_config(page_title="MindForge AI", page_icon="⚡", layout="wide")
-
+st.info("💡 Tip: If AI is busy, just resend your question.")
 
 # SESSION STATE (CHAT MEMORY)
 if "chat" not in st.session_state:
@@ -92,10 +92,68 @@ for msg in st.session_state.chat:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+# WELCOME SCREEN
+if len(st.session_state.chat) == 0:
+
+    st.markdown(
+    """
+    <div style='
+        background: rgba(255,255,255,0.05);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 20px;
+    '>
+
+    <h1 style='
+        color:#8ea2ff;
+        font-size:48px;
+        margin-bottom:10px;
+    '>
+    ⚡ Welcome to MindForge AI
+    </h1>
+
+    <h4 style='color:#94a3b8;'>
+    Learn Faster • Revise Smarter • Understand Better
+    </h4>
+
+    <br>
+
+    <p style='font-size:18px;'>
+    📚 Study Notes &nbsp;&nbsp;
+    🧠 Concept Explanations &nbsp;&nbsp;
+    ⚡ Quick Revision &nbsp;&nbsp;
+    🎯 Interview Prep
+    </p>
+
+    <br>
+
+    <p style='color:#cbd5e1;'>
+    Ask any question and start learning instantly.
+    </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown("### Quick Start")
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("📚 Generate Notes"):
+        st.session_state.quick_prompt = "Generate detailed notes on Python"
+
+with col2:
+    if st.button("🎯 Interview Preparation"):
+        st.session_state.quick_prompt = "Help me prepare for technical interviews"
 
 # USER INPUT (CHAT STYLE)
-user_input = st.chat_input("Ask your study question...")
+user_input = st.chat_input("Ask your question...")
 
+if not user_input and "quick_prompt" in st.session_state:
+    user_input = st.session_state.quick_prompt
+    del st.session_state.quick_prompt
 # AI RESPONSE LOGIC
 if user_input:
 
@@ -103,7 +161,8 @@ if user_input:
     st.session_state.chat.append({
         "role": "user",
         "content": user_input
-    })
+    }
+    )
 
     # Strong AI prompt (important upgrade)
     prompt = f"""
@@ -132,17 +191,7 @@ Question:
         "role": "assistant",
         "content": response
     })
-
-
-if create_notes:
-
-    conversation = ""
-
-    for msg in st.session_state.chat:
-
-        role = "Student" if msg["role"] == "user" else "Tutor"
-
-        conversation += f"{role}: {msg['content']}\n\n"
+    st.rerun()
 
     notes_prompt = f"""
 Create professional study notes from the following conversation.
@@ -162,8 +211,7 @@ Conversation:
 {conversation}
 """
 
-    with st.spinner("Creating study notes..."):
-
+    with st.spinner("🧠 MindForge is thinking..."):
         final_notes = generate_notes(notes_prompt)
 
     st.session_state.final_notes = final_notes

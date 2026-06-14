@@ -31,3 +31,5 @@ streamlit run app.py
 * Note history
 * Flashcard generation
 * Quiz mode
+
+seeking forward to learn moreee

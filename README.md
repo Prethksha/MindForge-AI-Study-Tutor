@@ -1,35 +1,45 @@
-# MindForge AI ⚡
+# ⚡ MindForge AI
 
-An AI-powered Study Tutor built with Streamlit and Gemini AI.
+An AI-powered Study Companion built with **Streamlit** and **Google Gemini AI** that generates structured study notes, summaries, mind maps, mnemonics, quizzes, and downloadable PDFs.
 
-## Features
+## 🚀 Live Demo
+🔗 (https://mindforge-ai-study-tutor-evn7qqlmdpx3k6j2pgcenu.streamlit.app/)
 
-* AI-powered concept explanations
-* Study notes generation
-* Interview preparation
-* Revision summaries
-* PDF export of notes
-* Modern Streamlit UI
+## ✨ Features
+- 📚 AI-generated Study Notes
+- 🧠 Simple Explanations
+- 🗺️ Mind Maps
+- 📝 Revision Notes
+- 💡 Mnemonics & Tricks
+- ❓ Quiz Generator
+- 💬 AI Chat
+- 📄 PDF Download
 
-## Tech Stack
+## 🛠 Tech Stack
+- Python
+- Streamlit
+- Google Gemini API
+- ReportLab
 
-* Python
-* Streamlit
-* Google Gemini API
-* ReportLab
-
-## Installation
+## ⚙️ Run Locally
 
 ```bash
+git clone https://github.com/yourusername/MindForge-AI.git
+cd MindForge-AI
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Future Improvements
+## 🔑 Environment Variable
 
-* User login system
-* Note history
-* Flashcard generation
-* Quiz mode
+Create `.streamlit/secrets.toml`
 
-seeking forward to learn moreee
+```toml
+GEMINI_API_KEY = "YOUR_API_KEY"
+```
+
+## 👩‍💻 Author
+
+**Prethksha Prem Kumar**
+
+⭐ If you like this project, consider giving it a star!

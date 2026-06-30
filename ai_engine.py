@@ -1,8 +1,12 @@
+import time
 import streamlit as st
 from google.genai import Client
+from dotenv import load_dotenv
 
-client = Client(api_key=st.secrets["GEMINI_API_KEY"])
- 
+import os
+load_dotenv()
+client = Client(api_key=os.getenv("GEMINI_API_KEY")) 
+
 def generate_notes(prompt):
     for attempt in range(3):
         try:

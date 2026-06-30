@@ -7,6 +7,7 @@ if "final_notes" not in st.session_state:
 
 # PAGE CONFIG
 st.set_page_config(page_title="MindForge AI", page_icon="⚡", layout="wide")
+st.error("🚨 THIS IS MINDFORGE AI TEST")
 st.info("💡 Tip: If AI is busy, just resend your question.")
 
 # SESSION STATE (CHAT MEMORY)
